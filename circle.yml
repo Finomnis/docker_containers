@@ -1,0 +1,20 @@
+machine:
+    services:
+        - docker
+    environment:
+        IMAGE_NAMES: test test2
+
+dependencies:
+    override:
+        - for IMAGE_NAME in ${IMAGE_NAMES}; do; docker build -t finomnis/${IMAGE_NAME}:latest ${IMAGE_NAME}; done
+
+test:
+    override:
+        - for IMAGE_NAME in ${IMAGE_NAMES}; do; docker run ${IMAGE_NAME} uname -a; done
+
+deployment:
+    hub:
+        branch: master
+        commands:
+            - docker login -e ${DOCKER_EMAIL} -u ${DOCKER_USER} -p ${DOCKER_PASS}
+            - for IMAGE_NAME in ${IMAGE_NAMES}; do; docker push finomnis/${IMAGE_NAME}:latest; done
