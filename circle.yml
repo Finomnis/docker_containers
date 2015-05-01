@@ -6,7 +6,7 @@ machine:
 
 dependencies:
     override:
-        - for IMAGE_NAME in ${IMAGE_NAMES}; do; docker build -t finomnis/${IMAGE_NAME}:latest ${IMAGE_NAME}; done
+        - ./build.sh $IMAGE_NAMES
 
 test:
     override:
