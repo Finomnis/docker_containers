@@ -2,7 +2,7 @@ machine:
     services:
         - docker
     environment:
-        IMAGE_NAMES: test test2
+        IMAGE_NAMES: docker
 
 dependencies:
     override:
