@@ -2,7 +2,7 @@ machine:
     services:
         - docker
     environment:
-        IMAGE_NAMES: latex
+        IMAGE_NAMES: build_env_latex
 
 dependencies:
     override:
